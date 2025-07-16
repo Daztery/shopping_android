@@ -2,6 +2,9 @@ plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
   alias(libs.plugins.kotlin.compose)
+  alias(libs.plugins.ksp)
+  alias(libs.plugins.kotlin.kapt)
+  alias(libs.plugins.hilt)
 }
 
 android {
@@ -34,9 +37,26 @@ android {
   buildFeatures {
     compose = true
   }
+  
+  ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+  }
 }
 
 dependencies {
+  
+  // Room
+  implementation(libs.androidx.room.runtime)
+  implementation(libs.androidx.room.ktx)
+  ksp(libs.androidx.room.compiler)
+  
+  // Jetpack Compose y Navigation
+  implementation(libs.navigation.compose)
+  implementation(libs.lifecycle.viewmodel.compose)
+  
+  // Hilt
+  implementation(libs.hilt.android)
+  kapt(libs.hilt.compiler)
   
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.lifecycle.runtime.ktx)
