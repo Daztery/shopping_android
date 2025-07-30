@@ -1,10 +1,10 @@
 plugins {
   alias(libs.plugins.android.application)
-  alias(libs.plugins.kotlin.android)
-  alias(libs.plugins.kotlin.compose)
-  alias(libs.plugins.ksp)
-  alias(libs.plugins.kotlin.kapt)
-  alias(libs.plugins.hilt)
+  alias(libs.plugins.jetbrains.kotlin.android)
+  alias(libs.plugins.compose.compiler)
+  id("kotlin-kapt")
+  id("com.google.dagger.hilt.android")
+  id("com.google.devtools.ksp")
 }
 
 android {
@@ -45,18 +45,33 @@ android {
 
 dependencies {
   
+  // View Model
+  implementation(libs.androidx.lifecycle.viewmodel.compose)
+  
+  // Retrofit
+  implementation(libs.retrofit)
+  implementation(libs.converter.moshi)
+  implementation(libs.moshi.kotlin)
+  implementation(libs.logging.interceptor)
+  
+  // Navigation
+  implementation(libs.androidx.navigation.compose)
+  
+  
+  // Hilt
+  implementation(libs.hilt.android)
+  kapt(libs.hilt.android.compiler)
+  implementation(libs.hilt.navigation.compose)
+  
+  
   // Room
   implementation(libs.androidx.room.runtime)
   implementation(libs.androidx.room.ktx)
   ksp(libs.androidx.room.compiler)
   
-  // Jetpack Compose y Navigation
-  implementation(libs.navigation.compose)
-  implementation(libs.lifecycle.viewmodel.compose)
-  
-  // Hilt
-  implementation(libs.hilt.android)
-  kapt(libs.hilt.compiler)
+  // Mockk
+  testImplementation(libs.mockk)
+  testImplementation(libs.kotlinx.coroutines.test)
   
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.lifecycle.runtime.ktx)
