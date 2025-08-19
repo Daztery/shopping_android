@@ -48,17 +48,6 @@ app/
 
 ---
 
-## 🧪 State & Logic (example)
-
-- `PurchaseState` centralizes:
-  - `items: List<Purchase>`
-  - `spendingLimit: Double?`
-  - `total`, `isOverLimit`, `remaining`
-- ViewModels expose `StateFlow` for Compose.
-- Use cases encapsulate actions: `AddProduct`, `EditProduct`, `DeleteProduct`, `GetProducts`, etc.
-
----
-
 ## 📦 Requirements
 
 - **Android Studio** (Koala or newer recommended)
